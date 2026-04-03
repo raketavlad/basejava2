@@ -1,30 +1,67 @@
-/**
- * Array based storage for Resumes
- */
+import java.util.Arrays;
+
 public class ArrayStorage {
-    Resume[] storage = new Resume[10000];
+    private Resume[] storage = new Resume[10000];
+    private int size = 0;
 
-    void clear() {
+    public void clear() {
+        for (int i = 0; i < size; i++) {
+            storage[i] = null;
+        }
+        size = 0;
     }
 
-    void save(Resume r) {
+    public void update(Resume resume) {
+
     }
 
-    Resume get(String uuid) {
-        return null;
+    public void save(Resume resume) {
+        int index = getResumeIndex(resume.uuid);
+        if (index >= 0) {
+            System.out.println("Резюме с таким uuid уже есть в хранилище!");
+        } else {
+            storage[size] = resume;
+            size++;
+        }
     }
 
-    void delete(String uuid) {
+    public Resume get(String uuid) {
+        int index = getResumeIndex(uuid);
+        if (index < 0) {
+            System.out.println("Резюме с таким uuid не найдено!");
+            return null;
+        } else {
+            return storage[index];
+        }
     }
 
-    /**
-     * @return array, contains only Resumes in storage (without null)
-     */
-    Resume[] getAll() {
-        return new Resume[0];
+    public void delete(String uuid) {
+        int index = getResumeIndex(uuid);
+        if (index < 0) {
+            System.out.println("Резюме с таким uuid не найдено!");
+        } else {
+            storage[index] = storage[size - 1];
+            storage[size - 1] = null;
+            size--;
+        }
     }
 
-    int size() {
-        return 0;
+    public Resume[] getAll() {
+        return Arrays.copyOf(storage, size);
+    }
+
+    public int size() {
+        return size;
+    }
+
+    private int getResumeIndex(String uuid) {
+        int index = -1;
+        for (int i = 0; i < size; i++) {
+            if (storage[i].toString().equals(uuid)) {
+                index = i;
+                break;
+            }
+        }
+        return index;
     }
 }
