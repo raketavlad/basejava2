@@ -1,15 +1,19 @@
 import java.util.Arrays;
 
 public class ArrayStorage {
-    Resume[] storage = new Resume[10000];
+    private Resume[] storage = new Resume[10000];
 
-    void clear() {
+    public void clear() {
         for (int i = 0; i < size(); i++) {
             storage[i] = null;
         }
     }
 
-    void save(Resume resume) {
+    public void update(Resume resume) {
+
+    }
+
+    public void save(Resume resume) {
         int index = getResumeIndex(resume.uuid);
         if (index >= 0) {
             System.out.println("Резюме с таким uuid уже есть в хранилище!");
@@ -18,7 +22,7 @@ public class ArrayStorage {
         }
     }
 
-    Resume get(String uuid) {
+    public Resume get(String uuid) {
         int index = getResumeIndex(uuid);
         if (index < 0) {
             System.out.println("Резюме с таким uuid не найдено!");
@@ -28,7 +32,7 @@ public class ArrayStorage {
         }
     }
 
-    void delete(String uuid) {
+    public void delete(String uuid) {
         int index = getResumeIndex(uuid);
         if (index < 0) {
             System.out.println("Резюме с таким uuid не найдено!");
@@ -39,11 +43,11 @@ public class ArrayStorage {
         }
     }
 
-    Resume[] getAll() {
+    public Resume[] getAll() {
         return Arrays.copyOf(storage, size());
     }
 
-    int size() {
+    public int size() {
         int countResume = 0;
         while (storage[countResume] != null) {
             countResume++;
