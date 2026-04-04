@@ -30,6 +30,13 @@ public class MainTestArrayStorage {
         ARRAY_STORAGE.delete(r1.uuid);
         printAll();
 
+        System.out.println("\nПроверка обновления резюме:");
+        printAll();
+        Resume r4 = new Resume();
+        r4.uuid = "uuid3";
+        ARRAY_STORAGE.update(r4);
+        printAll();
+
         System.out.println("\nПроверка очистки хранилища:");
         printAll();
         ARRAY_STORAGE.clear();

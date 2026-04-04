@@ -16,7 +16,12 @@ public class ArrayStorage {
     }
 
     public void update(Resume resume) {
-
+        int index = getResumeIndex(resume.uuid);
+        if (index < 0) {
+            System.out.println("Резюме с таким uuid не найдено!");
+        } else {
+            storage[index] = resume;
+        }
     }
 
     public void save(Resume resume) {
