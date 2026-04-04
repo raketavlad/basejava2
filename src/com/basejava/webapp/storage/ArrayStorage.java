@@ -14,9 +14,9 @@ public class ArrayStorage {
     }
 
     public void update(Resume resume) {
-        int index = getResumeIndex(resume.uuid);
+        int index = getResumeIndex(resume.getUuid());
         if (index < 0) {
-            System.out.println("Резюме с uuid: " + resume.uuid + " - не найдено!");
+            System.out.println("Резюме с uuid: " + resume.getUuid() + " - не найдено!");
         } else {
             storage[index] = resume;
         }
@@ -26,8 +26,8 @@ public class ArrayStorage {
         if (size >= storage.length) {
             System.out.println("Хранилище переполнено, нужно освободить место!");
         } else {
-            if (getResumeIndex(resume.uuid) >= 0) {
-                System.out.println("Резюме с uuid: " + resume.uuid + " - уже есть в хранилище!");
+            if (getResumeIndex(resume.getUuid()) >= 0) {
+                System.out.println("Резюме с uuid: " + resume.getUuid() + " - уже есть в хранилище!");
             } else {
                 storage[size] = resume;
                 size++;
