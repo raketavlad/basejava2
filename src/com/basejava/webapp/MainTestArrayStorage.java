@@ -18,22 +18,27 @@ public class MainTestArrayStorage {
         ARRAY_STORAGE.save(r2);
         ARRAY_STORAGE.save(r3);
 
+        System.out.println("Проверка после создания трёх резюме:");
         System.out.println("Get r1: " + ARRAY_STORAGE.get(r1.uuid));
         System.out.println("Size: " + ARRAY_STORAGE.size());
 
+        System.out.println("\nПроверка резюме, которого нет в хранилеще:");
         System.out.println("Get dummy: " + ARRAY_STORAGE.get("dummy"));
 
+        System.out.println("\nПроверка удаления резюме:");
         printAll();
         ARRAY_STORAGE.delete(r1.uuid);
         printAll();
+
+        System.out.println("\nПроверка очистки хранилища:");
+        printAll();
         ARRAY_STORAGE.clear();
         printAll();
-
         System.out.println("Size: " + ARRAY_STORAGE.size());
     }
 
     static void printAll() {
-        System.out.println("\nGet All");
+        System.out.println("Get All");
         for (Resume r : ARRAY_STORAGE.getAll()) {
             System.out.println(r);
         }
