@@ -56,7 +56,7 @@ public class ArrayStorage {
     }
 
     public Resume[] getAll() {
-        return Arrays.copyOf(storage, size);
+        return Arrays.copyOfRange(storage, 0, size);
     }
 
     public int size() {
