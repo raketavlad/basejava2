@@ -1,6 +1,8 @@
-/**
- * Test for your ArrayStorage implementation
- */
+package com.basejava.webapp;
+
+import com.basejava.webapp.model.Resume;
+import com.basejava.webapp.storage.ArrayStorage;
+
 public class MainTestArrayStorage {
     static final ArrayStorage ARRAY_STORAGE = new ArrayStorage();
 
