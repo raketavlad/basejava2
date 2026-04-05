@@ -2,14 +2,7 @@ package com.basejava.webapp.storage;
 
 import com.basejava.webapp.model.Resume;
 
-import java.util.Arrays;
-
 public class ArrayStorage extends AbstractArrayStorage {
-
-    public void clear() {
-        Arrays.fill(storage, 0, size, null);
-        size = 0;
-    }
 
     public void delete(String uuid) {
         int index = getResumeIndex(uuid);
@@ -22,10 +15,6 @@ public class ArrayStorage extends AbstractArrayStorage {
         }
     }
 
-    public Resume[] getAll() {
-        return Arrays.copyOfRange(storage, 0, size);
-    }
-
     public void save(Resume resume) {
         if (size >= STORAGE_LIMIT) {
             System.out.println("Хранилище переполнено, нужно освободить место!");
@@ -36,15 +25,6 @@ public class ArrayStorage extends AbstractArrayStorage {
                 storage[size] = resume;
                 size++;
             }
-        }
-    }
-
-    public void update(Resume resume) {
-        int index = getResumeIndex(resume.getUuid());
-        if (index < 0) {
-            System.out.println("Резюме с uuid: " + resume.getUuid() + " - не найдено!");
-        } else {
-            storage[index] = resume;
         }
     }
 
