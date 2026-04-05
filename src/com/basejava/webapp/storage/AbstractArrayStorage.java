@@ -8,10 +8,6 @@ public abstract class AbstractArrayStorage implements Storage {
     protected final Resume[] storage = new Resume[STORAGE_LIMIT];
     protected int size = 0;
 
-    public int size() {
-        return size;
-    }
-
     public Resume get(String uuid) {
         int index = getResumeIndex(uuid);
         if (index < 0) {
@@ -22,4 +18,8 @@ public abstract class AbstractArrayStorage implements Storage {
     }
 
     protected abstract int getResumeIndex(String uuid);
+
+    public int size() {
+        return size;
+    }
 }

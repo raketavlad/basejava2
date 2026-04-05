@@ -11,13 +11,19 @@ public class ArrayStorage extends AbstractArrayStorage {
         size = 0;
     }
 
-    public void update(Resume resume) {
-        int index = getResumeIndex(resume.getUuid());
+    public void delete(String uuid) {
+        int index = getResumeIndex(uuid);
         if (index < 0) {
-            System.out.println("Резюме с uuid: " + resume.getUuid() + " - не найдено!");
+            System.out.println("Резюме с uuid: " + uuid + " - не найдено!");
         } else {
-            storage[index] = resume;
+            storage[index] = storage[size - 1];
+            storage[size - 1] = null;
+            size--;
         }
+    }
+
+    public Resume[] getAll() {
+        return Arrays.copyOfRange(storage, 0, size);
     }
 
     public void save(Resume resume) {
@@ -33,19 +39,13 @@ public class ArrayStorage extends AbstractArrayStorage {
         }
     }
 
-    public void delete(String uuid) {
-        int index = getResumeIndex(uuid);
+    public void update(Resume resume) {
+        int index = getResumeIndex(resume.getUuid());
         if (index < 0) {
-            System.out.println("Резюме с uuid: " + uuid + " - не найдено!");
+            System.out.println("Резюме с uuid: " + resume.getUuid() + " - не найдено!");
         } else {
-            storage[index] = storage[size - 1];
-            storage[size - 1] = null;
-            size--;
+            storage[index] = resume;
         }
-    }
-
-    public Resume[] getAll() {
-        return Arrays.copyOfRange(storage, 0, size);
     }
 
     protected int getResumeIndex(String uuid) {
