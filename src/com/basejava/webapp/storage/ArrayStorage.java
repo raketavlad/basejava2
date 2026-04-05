@@ -16,15 +16,13 @@ public class ArrayStorage extends AbstractArrayStorage {
     }
 
     public void save(Resume resume) {
-        if (size >= STORAGE_LIMIT) {
+        if (getResumeIndex(resume.getUuid()) >= 0) {
+            System.out.println("Резюме с uuid: " + resume.getUuid() + " - уже есть в хранилище!");
+        } else if (size >= STORAGE_LIMIT) {
             System.out.println("Хранилище переполнено, нужно освободить место!");
         } else {
-            if (getResumeIndex(resume.getUuid()) >= 0) {
-                System.out.println("Резюме с uuid: " + resume.getUuid() + " - уже есть в хранилище!");
-            } else {
-                storage[size] = resume;
-                size++;
-            }
+            storage[size] = resume;
+            size++;
         }
     }
 
