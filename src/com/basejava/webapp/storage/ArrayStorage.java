@@ -33,15 +33,6 @@ public class ArrayStorage extends AbstractArrayStorage {
         }
     }
 
-    public Resume get(String uuid) {
-        int index = getResumeIndex(uuid);
-        if (index < 0) {
-            System.out.println("Резюме с uuid: " + uuid + " - не найдено!");
-            return null;
-        }
-        return storage[index];
-    }
-
     public void delete(String uuid) {
         int index = getResumeIndex(uuid);
         if (index < 0) {
