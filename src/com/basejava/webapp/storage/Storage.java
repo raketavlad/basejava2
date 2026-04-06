@@ -1,0 +1,20 @@
+package com.basejava.webapp.storage;
+
+import com.basejava.webapp.model.Resume;
+
+public interface Storage {
+
+    void clear();
+
+    void delete(String uuid);
+
+    Resume get(String uuid);
+
+    Resume[] getAll();
+
+    void save(Resume resume);
+
+    int size();
+
+    void update(Resume resume);
+}
