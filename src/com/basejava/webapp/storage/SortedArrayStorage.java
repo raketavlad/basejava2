@@ -6,34 +6,9 @@ import java.util.Arrays;
 
 public class SortedArrayStorage extends AbstractArrayStorage {
 
-    @Override
-    public void delete(String uuid) {
-        int index = getResumeIndex(uuid);
-        if (index < 0) {
-            System.out.println("Резюме с uuid: " + uuid + " - не найдено!");
-        } else {
-            for (int i = index; i < size - 1; i++) {
-                storage[i] = storage[i + 1];
-            }
-            storage[size - 1] = null;
-            size--;
-        }
-    }
-
-    @Override
-    public void save(Resume resume) {
-        int index = getResumeIndex(resume.getUuid());
-        if (index >= 0) {
-            System.out.println("Резюме с uuid: " + resume.getUuid() + " - уже есть в хранилище!");
-        } else if (size >= STORAGE_LIMIT) {
-            System.out.println("Хранилище переполнено, нужно освободить место!");
-        } else {
-            int indexNewResume = -(index + 1);
-            for (int i = size; i > indexNewResume; i--) {
-                storage[i] = storage[i - 1];
-            }
-            storage[indexNewResume] = resume;
-            size++;
+    protected void deleteResume(int index) {
+        for (int i = index; i < size - 1; i++) {
+            storage[i] = storage[i + 1];
         }
     }
 
@@ -42,5 +17,13 @@ public class SortedArrayStorage extends AbstractArrayStorage {
         Resume searchKey = new Resume();
         searchKey.setUuid(uuid);
         return Arrays.binarySearch(storage, 0, size, searchKey);
+    }
+
+    protected void saveResume(int index, Resume resume) {
+        int indexNewResume = -(index + 1);
+        for (int i = size; i > indexNewResume; i--) {
+            storage[i] = storage[i - 1];
+        }
+        storage[indexNewResume] = resume;
     }
 }
