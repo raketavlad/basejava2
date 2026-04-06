@@ -6,9 +6,10 @@ import java.util.Arrays;
 
 public class SortedArrayStorage extends AbstractArrayStorage {
 
-    protected void deleteResume(int index) {
-        for (int i = index; i < size - 1; i++) {
-            storage[i] = storage[i + 1];
+    protected void fillDeleteElement(int index) {
+        int numMoved = size - index - 1;
+        if (numMoved > 0) {
+            System.arraycopy(storage, index + 1, storage, index, numMoved);
         }
     }
 
@@ -19,11 +20,9 @@ public class SortedArrayStorage extends AbstractArrayStorage {
         return Arrays.binarySearch(storage, 0, size, searchKey);
     }
 
-    protected void saveResume(int index, Resume resume) {
-        int indexNewResume = -(index + 1);
-        for (int i = size; i > indexNewResume; i--) {
-            storage[i] = storage[i - 1];
-        }
+    protected void insertElement(int index, Resume resume) {
+        int indexNewResume = -index - 1;
+        System.arraycopy(storage, indexNewResume, storage, indexNewResume + 1, size - indexNewResume);
         storage[indexNewResume] = resume;
     }
 }
